@@ -96,7 +96,7 @@ spec:
         region: us-east-1
         templateName: load-balanced-fargate-svc
         templateMajorVersion: '1'
-        repositoryConnectionArn: 'arn:aws:codestar-connections:us-east-1:672132031023:connection/91e439c6-296b-4ea0-ba36-e1a23cef7d41'
+        repositoryConnectionArn: 'arn:aws:codestar-connections:us-east-1:672132031023:connection/ce4a1db0-1571-4e8f-bc63-2bb3bcc80e39'
 
     - id: register
       name: Register
