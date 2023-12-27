@@ -83,7 +83,7 @@ spec:
         serviceName: ${{ parameters.component_id }}
         repositoryName: ${{ parameters.repoName }}
         #branchName: main
-        #serviceSpecPath: ./spec.yaml
+        serviceSpecPath: ./spec.yaml
         # Update the following fields to match the resources in your AWS account
         region: us-east-2
         templateName: pe-frontend-svc
