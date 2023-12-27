@@ -2,12 +2,12 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: fargate-nginx-template
-  title: Nginx Fargate Web Service
-  description: Create a simple website using Nginx and AWS Fargate
+  title: Platform Engineering Demo Service
+  description: Create a simple repository and pipeline
   tags:
     - recommended
-    - nginx
-    - fargate
+    - eks
+    - service
 spec:
   owner: service@example.com
   type: service
