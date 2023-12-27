@@ -1,19 +1,11 @@
 proton: ServiceSpec
 
-pipeline:
-  service_dir: "."
-  unit_test_command: "./run-tests.sh"
+# pipeline:
+#   service_dir: "."
+#   unit_test_command: "./run-tests.sh"
 
 instances:
-  - name: "dev"
-    environment: "${{values.aws_proton_dev_environment_name}}"
+  - name: "${{values.component_id}}"
+    environment: "${{values.aws_proton_environment_name}}"
     spec:
-      desired_count: 1
-      port: ${{values.http_port}}
-      task_size: "x-small"
-  - name: "prod"
-    environment: "${{values.aws_proton_prod_environment_name}}"
-    spec:
-      desired_count: 2
-      port: ${{values.http_port}}
-      task_size: "medium"
+      repository_name: "${{values.repository_name}}"
