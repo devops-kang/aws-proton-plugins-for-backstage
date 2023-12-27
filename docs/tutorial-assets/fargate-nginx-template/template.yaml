@@ -17,7 +17,6 @@ spec:
       required:
         - component_id
         - owner
-        - initial_message
       properties:
         component_id:
           title: Name
@@ -36,67 +35,60 @@ spec:
           ui:options:
             allowedKinds:
               - Group
-        initial_message:
-          title: Initial message
-          type: string
-          description: Initial message to display on the website ('Hello world!')
     - title: Choose a location
       required:
         - repoUrl
       properties:
-        repoUrl:
-          title: Repository Location
+        repoName:
+          title: Repository Name
           type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-
+          description: The name for this service
+          
   steps:
-    - id: template
-      name: Fetch Skeleton + Template
-      action: fetch:template
-      input:
-        url: ./skeleton
-        values:
-          component_id: ${{ parameters.component_id }}
-          description: ${{ parameters.description }}
-          initial_message: ${{ parameters.initial_message }}
-          owner: ${{ parameters.owner }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
-          http_port: 80
-          # The AWS Proton environments to use for deploying the initial service instances
-          aws_proton_dev_environment_name: "backstage-proton-plugins-tutorial-env"
-          aws_proton_prod_environment_name: "backstage-proton-plugins-tutorial-env"
-          # The AWS account where the Proton service will be created
-          aws_account_id: "672132031023"
-          # The AWS region where the Proton service will be created
-          aws_region: us-east-1
+    # - id: template
+    #   name: Fetch Skeleton + Template
+    #   action: fetch:template
+    #   input:
+    #     url: ./skeleton
+    #     values:
+    #       component_id: ${{ parameters.component_id }}
+    #       description: ${{ parameters.description }}
+    #       #initial_message: ${{ parameters.initial_message }}
+    #       owner: ${{ parameters.owner }}
+    #       #destination: ${{ parameters.repoUrl | parseRepoUrl }}
+    #       http_port: 80
+    #       # The AWS Proton environments to use for deploying the initial service instances
+    #       aws_proton_dev_environment_name: "pe-demo-env"
+    #       aws_proton_prod_environment_name: "pe-demo-env"
+    #       # The AWS account where the Proton service will be created
+    #       aws_account_id: "672132031023"
+    #       # The AWS region where the Proton service will be created
+    #       aws_region: us-east-2
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        description: This is ${{ parameters.component_id }}
-        repoUrl: ${{ parameters.repoUrl }}
-        repoVisibility: private
-        defaultBranch: main
-        sourcePath: ./repo-contents
+    # - id: publish
+    #   name: Publish
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ["github.com"]
+    #     description: This is ${{ parameters.component_id }}
+    #     repoUrl: ${{ parameters.repoUrl }}
+    #     repoVisibility: private
+    #     defaultBranch: main
+    #     sourcePath: ./repo-contents
 
     - id: create-proton-service
       name: Create AWS Proton Service
       action: aws:proton:create-service
       input:
         serviceName: ${{ parameters.component_id }}
-        repository: ${{ parameters.repoUrl | parseRepoUrl }}
-        branchName: main
-        serviceSpecPath: ./spec.yaml
+        repositoryName: ${{ parameters.repoName }}
+        #branchName: main
+        #serviceSpecPath: ./spec.yaml
         # Update the following fields to match the resources in your AWS account
-        region: us-east-1
-        templateName: load-balanced-fargate-svc
+        region: us-east-2
+        templateName: pe-frontend-svc
         templateMajorVersion: '1'
-        repositoryConnectionArn: 'arn:aws:codestar-connections:us-east-1:672132031023:connection/ce4a1db0-1571-4e8f-bc63-2bb3bcc80e39'
+        #repositoryConnectionArn: 'arn:aws:codestar-connections:us-east-1:672132031023:connection/ce4a1db0-1571-4e8f-bc63-2bb3bcc80e39'
 
     - id: register
       name: Register
