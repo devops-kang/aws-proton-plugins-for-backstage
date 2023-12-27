@@ -58,7 +58,7 @@ spec:
           #destination: ${{ parameters.repoUrl | parseRepoUrl }}
           repository_name: ${{ parameters.repoName }}
           # The AWS Proton environments to use for deploying the initial service instances
-          aws_proton_environment_name: "pe-demo-env"
+          aws_proton_environment_name: "env25"
           #aws_proton_prod_environment_name: "pe-demo-env"
           # The AWS account where the Proton service will be created
           aws_account_id: "672132031023"
