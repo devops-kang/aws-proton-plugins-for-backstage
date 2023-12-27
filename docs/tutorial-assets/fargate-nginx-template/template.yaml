@@ -45,25 +45,25 @@ spec:
           description: The name for this service
           
   steps:
-    # - id: template
-    #   name: Fetch Skeleton + Template
-    #   action: fetch:template
-    #   input:
-    #     url: ./skeleton
-    #     values:
-    #       component_id: ${{ parameters.component_id }}
-    #       description: ${{ parameters.description }}
-    #       #initial_message: ${{ parameters.initial_message }}
-    #       owner: ${{ parameters.owner }}
-    #       #destination: ${{ parameters.repoUrl | parseRepoUrl }}
-    #       http_port: 80
-    #       # The AWS Proton environments to use for deploying the initial service instances
-    #       aws_proton_dev_environment_name: "pe-demo-env"
-    #       aws_proton_prod_environment_name: "pe-demo-env"
-    #       # The AWS account where the Proton service will be created
-    #       aws_account_id: "672132031023"
-    #       # The AWS region where the Proton service will be created
-    #       aws_region: us-east-2
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
+          #initial_message: ${{ parameters.initial_message }}
+          owner: ${{ parameters.owner }}
+          #destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          #http_port: 80
+          # The AWS Proton environments to use for deploying the initial service instances
+          aws_proton_environment_name: "pe-demo-env"
+          #aws_proton_prod_environment_name: "pe-demo-env"
+          # The AWS account where the Proton service will be created
+          aws_account_id: "672132031023"
+          # The AWS region where the Proton service will be created
+          aws_region: us-east-2
 
     # - id: publish
     #   name: Publish
